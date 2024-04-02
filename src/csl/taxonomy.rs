@@ -564,7 +564,8 @@ impl EntryLike for Entry {
                 !(is_periodical || is_collection)
             }
             Kind::Chapter => {
-                select!(Chapter > (Book | Anthology | Proceedings)).matches(self)
+                select!((Chapter | Anthos) > (Book | Anthology | Proceedings))
+                    .matches(self)
             }
             Kind::Entry | Kind::EntryDictionary | Kind::EntryEncyclopedia => {
                 if kind == Kind::EntryDictionary {
